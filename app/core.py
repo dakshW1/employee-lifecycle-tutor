@@ -166,9 +166,123 @@ def load_patterns(path: Path = PATTERNS_FILE) -> dict:
 
 
 # --- Milestone 3: Train an LM to predict the next likely HR event in a sequence.
-# Hint: Utilize continued pretraining for the language model.
-def milestone_3():  # TODO(milestone 3)
-    raise NotImplementedError("TODO(milestone 3)")
+
+def load_lm(name: str = "distilgpt2"):
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
+    tok = AutoTokenizer.from_pretrained(name)
+    tok.pad_token = tok.eos_token
+    model = AutoModelForCausalLM.from_pretrained(name)
+    return model, tok
+
+
+def next_token_loss(model, ids, mask):
+    """Average cross-entropy of predicting every token from the ones before it, ignoring padding
+    (the drill's continued-pretraining objective, in PyTorch)."""
+    import torch.nn.functional as F
+
+    logits = model(input_ids=ids[:, :-1], attention_mask=mask[:, :-1]).logits
+    loss = F.cross_entropy(logits.transpose(1, 2), ids[:, 1:], reduction="none")
+    m = mask[:, 1:].float()
+    return (loss * m).sum() / m.sum()
+
+
+def _batch(tok, careers):
+    import torch
+
+    enc = [tok(to_text(c))["input_ids"] + [tok.eos_token_id] for c in careers]
+    width = max(len(e) for e in enc)
+    ids = torch.tensor([e + [tok.eos_token_id] * (width - len(e)) for e in enc])
+    mask = torch.tensor([[1] * len(e) + [0] * (width - len(e)) for e in enc])
+    return ids, mask
+
+
+def validation_loss(model, tok, careers, batch_size: int = 64) -> float:
+    import torch
+
+    model.eval()
+    total = count = 0.0
+    with torch.no_grad():
+        for i in range(0, len(careers), batch_size):
+            ids, mask = _batch(tok, careers[i:i + batch_size])
+            n = float(mask[:, 1:].sum())
+            total += next_token_loss(model, ids, mask).item() * n
+            count += n
+    return total / count
+
+
+def pretrain(model, tok, careers, val=None, steps: int = 300, batch_size: int = 16, lr: float = 1e-4,
+             warmup: int = 20, eval_every: int = 50, seed: int = 0, log=print) -> list[dict]:
+    """Continued pretraining: the plain next-token objective on careers-as-text, warm-up then cosine decay."""
+    import torch
+
+    torch.manual_seed(seed)
+    rng = random.Random(seed)
+    opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.01)
+
+    def rate(step):
+        if step < warmup:
+            return (step + 1) / warmup
+        return 0.1 + 0.9 * 0.5 * (1 + math.cos(math.pi * (step - warmup) / max(1, steps - warmup)))
+
+    sched = torch.optim.lr_scheduler.LambdaLR(opt, rate)
+    history, start, recent = [], time.time(), []
+    if val:
+        history.append({"step": 0, "loss": None, "val_loss": round(validation_loss(model, tok, val), 4)})
+        log(f"step 0  val loss {history[-1]['val_loss']:.3f}")
+    for step in range(1, steps + 1):
+        model.train()
+        ids, mask = _batch(tok, rng.sample(careers, min(batch_size, len(careers))))
+        loss = next_token_loss(model, ids, mask)
+        opt.zero_grad()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        opt.step()
+        sched.step()
+        recent.append(loss.item())
+        if step % eval_every == 0 or step == steps:
+            row = {"step": step, "loss": round(float(np.mean(recent)), 4), "seconds": round(time.time() - start, 1)}
+            if val:
+                row["val_loss"] = round(validation_loss(model, tok, val), 4)
+            history.append(row)
+            recent = []
+            log(f"step {step}  train {row['loss']:.3f}" + (f"  val {row['val_loss']:.3f}" if val else ""))
+    model.eval()
+    return history
+
+
+def score_next(model, tok, history: list[str]) -> dict[str, float]:
+    """P(next event | history) over all HR events (plus 'end'), from the LM's token log-probabilities:
+    log P(" event words" | "Career: a > b >"), summed over the candidate's tokens, then normalised."""
+    import torch
+
+    text_ids = tok(to_text(history))["input_ids"]
+    sep = tok(" >")["input_ids"]
+    prefix = text_ids + sep
+    names = list(EVENTS)
+    cands = [tok(" " + e.replace("_", " "))["input_ids"] for e in names]
+    with torch.no_grad():
+        lp_text = torch.log_softmax(model(torch.tensor([prefix])).logits[0], dim=-1)
+        # log P(" >" | career so far): the career continues ...
+        cont = sum(lp_text[len(text_ids) - 1 + i, t].item() for i, t in enumerate(sep))
+        # ... versus log P(end-of-text | career so far): the career ends here
+        end_lp = lp_text[len(text_ids) - 1, tok.eos_token_id].item()
+        logp = []
+        for c in cands:
+            lp = torch.log_softmax(model(torch.tensor([prefix + c])).logits[0, len(prefix) - 1:-1], dim=-1)
+            logp.append(cont + sum(lp[i, t].item() for i, t in enumerate(c)))
+    names.append(END)
+    logp.append(end_lp)
+    p = np.exp(np.array(logp) - max(logp))
+    p /= p.sum()
+    return dict(sorted(zip(names, p.tolist()), key=lambda kv: -kv[1]))
+
+
+def save_lm(model, tok, out_dir: Path = MODEL_DIR, history: list | None = None) -> None:
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+    model.save_pretrained(out_dir)
+    tok.save_pretrained(out_dir)
+    (Path(out_dir) / "train_log.json").write_text(json.dumps(history or [], indent=1))
 
 
 # --- Milestone 4: Design a text-based interactive tutor that queries the LM for explanations or next steps.

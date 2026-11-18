@@ -54,9 +54,25 @@ def test_next_step_stats_recover_the_true_transition(patterns):
 
 
 # Milestone 3: Train an LM to predict the next likely HR event in a sequence.
-@pytest.mark.skip(reason="remove this line when you start milestone 3")
-def test_milestone_3():
-    raise NotImplementedError("write the test for milestone 3")
+@pytest.fixture(scope="module")
+def lm():
+    model, tok = core.load_lm(TINY)
+    careers = core.simulate(60, seed=3)
+    history = core.pretrain(model, tok, careers, val=careers[:20], steps=20, batch_size=8, lr=5e-2,
+                            warmup=2, eval_every=10, log=lambda *_: None)
+    return model, tok, history
+
+
+def test_continued_pretraining_lowers_validation_loss(lm):
+    _, _, history = lm
+    assert history[-1]["val_loss"] < history[0]["val_loss"]
+
+
+def test_score_next_is_a_distribution_over_events(lm):
+    model, tok, _ = lm
+    probs = core.score_next(model, tok, ["hire", "onboarding"])
+    assert set(probs) == set(core.EVENTS) | {core.END}
+    assert sum(probs.values()) == pytest.approx(1.0)
 
 
 # Milestone 4: Design a text-based interactive tutor that queries the LM for explanations or next steps.
