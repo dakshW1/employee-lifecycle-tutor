@@ -29,9 +29,28 @@ def test_careers_file_round_trip(tmp_path):
 
 
 # Milestone 2: Mine frequent HR event sequences using `thilimarketbasket`.
-@pytest.mark.skip(reason="remove this line when you start milestone 2")
-def test_milestone_2():
-    raise NotImplementedError("write the test for milestone 2")
+def test_sequence_items_keep_order():
+    items = core.sequence_items(["hire", "onboarding", "training"])
+    assert "hire > onboarding" in items and "onboarding > hire" not in items
+    assert "hire > onboarding > training" in items and "hire" in items
+
+
+@pytest.fixture(scope="module")
+def patterns():
+    return core.mine_patterns(core.simulate(800, seed=2), min_support=0.05)
+
+
+def test_mined_supports_match_direct_counts(patterns):
+    careers = core.simulate(800, seed=2)
+    direct = sum("hire > onboarding" in core.sequence_items(c) for c in careers) / len(careers)
+    assert patterns["sequences"]["hire > onboarding"] == pytest.approx(direct)
+    assert all(sup >= 0.05 for sup in patterns["sequences"].values())
+
+
+def test_next_step_stats_recover_the_true_transition(patterns):
+    stats = {nxt: share for nxt, _, share in core.next_step_stats(patterns, "hire")}
+    assert stats["onboarding"] == pytest.approx(0.95, abs=0.03)  # the planted 95%
+    assert all(not core._overlapping(a, c) for a, c, *_ in patterns["rules"])
 
 
 # Milestone 3: Train an LM to predict the next likely HR event in a sequence.

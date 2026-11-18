@@ -110,9 +110,59 @@ def split(careers: list[list[str]], test_share: float = 0.15) -> tuple[list, lis
 
 
 # --- Milestone 2: Mine frequent HR event sequences using `thilimarketbasket`.
-# Hint: Apply `thilimarketbasket` for frequent sequence mining.
-def milestone_2():  # TODO(milestone 2)
-    raise NotImplementedError("TODO(milestone 2)")
+
+def sequence_items(career: list[str], max_gap_free: int = 3) -> set[str]:
+    """Turn an ordered career into a 'basket' of order-preserving items the Apriori miner can count:
+    every contiguous run of 1..max_gap_free events, written 'a > b > c'. A frequent item is then a
+    frequent sequence pattern, and a frequent itemset is a set of patterns that occur in the same career."""
+    items = set()
+    for size in range(1, max_gap_free + 1):
+        for i in range(len(career) - size + 1):
+            items.add(" > ".join(career[i:i + size]))
+    return items
+
+
+def _overlapping(a, c) -> bool:
+    """'x > y > z' always implies 'y > z': such rules are true by construction, so they are dropped."""
+    return any(x in y or y in x for x in a for y in c)
+
+
+def mine_patterns(careers: list[list[str]], min_support: float = 0.05, max_size: int = 2) -> dict:
+    """Exact frequent patterns via thilimarketbasket.mine (Apriori on bitsets)."""
+    from thilimarketbasket.mine import frequent_itemsets, rules
+
+    baskets = [sorted(sequence_items(c)) for c in careers]
+    itemsets = frequent_itemsets(baskets, min_support=min_support, max_size=max_size)
+    sequences = {next(iter(s)): sup for s, sup in itemsets.items() if len(s) == 1 and ">" in next(iter(s))}
+    found_rules = [(sorted(a), sorted(c), round(sup, 4), round(conf, 3), round(lift, 2))
+                   for a, c, sup, conf, lift in rules(itemsets, min_confidence=0.5)
+                   if not _overlapping(a, c)]
+    return {"n_careers": len(careers), "min_support": min_support,
+            "sequences": dict(sorted(sequences.items(), key=lambda kv: -kv[1])),
+            "event_support": {next(iter(s)): sup for s, sup in itemsets.items()
+                              if len(s) == 1 and ">" not in next(iter(s))},
+            "rules": found_rules[:200]}
+
+
+def next_step_stats(patterns: dict, last: str) -> list[tuple[str, float, float]]:
+    """From the mined 2-step patterns: (next event, support of 'last > next', share of careers with 'last'
+    that continue to 'next'). This is the tutor's 'why' evidence."""
+    base = patterns["event_support"].get(last)
+    out = []
+    for seq, sup in patterns["sequences"].items():
+        parts = seq.split(" > ")
+        if len(parts) == 2 and parts[0] == last and base:
+            out.append((parts[1], sup, min(1.0, sup / base)))
+    return sorted(out, key=lambda t: -t[1])
+
+
+def save_patterns(patterns: dict, path: Path = PATTERNS_FILE) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(patterns, indent=1), encoding="utf-8")
+
+
+def load_patterns(path: Path = PATTERNS_FILE) -> dict:
+    return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
 # --- Milestone 3: Train an LM to predict the next likely HR event in a sequence.

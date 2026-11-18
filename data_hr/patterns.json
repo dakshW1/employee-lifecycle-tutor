@@ -1,0 +1,2301 @@
+{
+ "n_careers": 2550,
+ "min_support": 0.05,
+ "sequences": {
+  "hire > onboarding": 0.9470588235294117,
+  "onboarding > probation_review": 0.8235294117647058,
+  "hire > onboarding > probation_review": 0.8105882352941176,
+  "training > performance_review": 0.6196078431372549,
+  "performance_review > salary_raise": 0.48901960784313725,
+  "resignation > exit_interview": 0.3898039215686275,
+  "onboarding > probation_review > training": 0.3870588235294118,
+  "probation_review > training": 0.3870588235294118,
+  "salary_raise > performance_review": 0.3749019607843137,
+  "performance_review > salary_raise > performance_review": 0.35411764705882354,
+  "performance_review > promotion": 0.33137254901960783,
+  "probation_review > performance_review": 0.3298039215686275,
+  "onboarding > probation_review > performance_review": 0.3298039215686275,
+  "probation_review > training > performance_review": 0.30196078431372547,
+  "training > performance_review > salary_raise": 0.29333333333333333,
+  "performance_review > training": 0.2698039215686274,
+  "performance_review > improvement_plan": 0.2388235294117647,
+  "promotion > training": 0.21529411764705883,
+  "promotion > performance_review": 0.20745098039215687,
+  "performance_review > training > performance_review": 0.2015686274509804,
+  "training > performance_review > promotion": 0.17098039215686275,
+  "training > promotion": 0.17019607843137255,
+  "promotion > training > performance_review": 0.16392156862745097,
+  "performance_review > promotion > training": 0.1603921568627451,
+  "performance_review > resignation": 0.1596078431372549,
+  "onboarding > training": 0.14588235294117646,
+  "salary_raise > performance_review > salary_raise": 0.14549019607843136,
+  "performance_review > promotion > performance_review": 0.14549019607843136,
+  "hire > onboarding > training": 0.13647058823529412,
+  "performance_review > resignation > exit_interview": 0.13529411764705881,
+  "improvement_plan > performance_review": 0.13450980392156864,
+  "performance_review > improvement_plan > performance_review": 0.12627450980392158,
+  "probation_review > performance_review > salary_raise": 0.12431372549019608,
+  "training > performance_review > training": 0.12431372549019608,
+  "training > internal_transfer": 0.11960784313725491,
+  "performance_review > leave_of_absence": 0.1192156862745098,
+  "salary_raise > training": 0.11450980392156863,
+  "onboarding > training > performance_review": 0.10980392156862745,
+  "performance_review > retirement": 0.10941176470588235,
+  "performance_review > salary_raise > training": 0.10862745098039216,
+  "training > performance_review > improvement_plan": 0.10627450980392157,
+  "leave_of_absence > return_from_leave": 0.09490196078431372,
+  "performance_review > leave_of_absence > return_from_leave": 0.09490196078431372,
+  "salary_raise > resignation": 0.08784313725490196,
+  "internal_transfer > onboarding": 0.08509803921568627,
+  "salary_raise > performance_review > promotion": 0.08509803921568627,
+  "performance_review > salary_raise > resignation": 0.08235294117647059,
+  "salary_raise > training > performance_review": 0.08078431372549019,
+  "salary_raise > performance_review > training": 0.07764705882352942,
+  "performance_review > improvement_plan > warning": 0.07568627450980392,
+  "improvement_plan > warning": 0.07568627450980392,
+  "promotion > performance_review > salary_raise": 0.07529411764705882,
+  "training > promotion > performance_review": 0.07490196078431373,
+  "probation_review > termination": 0.07254901960784314,
+  "onboarding > probation_review > termination": 0.07254901960784314,
+  "training > promotion > training": 0.07254901960784314,
+  "salary_raise > resignation > exit_interview": 0.07137254901960784,
+  "salary_raise > performance_review > improvement_plan": 0.06980392156862746,
+  "internal_transfer > onboarding > probation_review": 0.06901960784313725,
+  "termination > exit_interview": 0.06666666666666667,
+  "training > internal_transfer > onboarding": 0.06627450980392156,
+  "probation_review > resignation": 0.06156862745098039,
+  "onboarding > probation_review > resignation": 0.06156862745098039,
+  "training > performance_review > resignation": 0.0611764705882353,
+  "probation_review > performance_review > promotion": 0.0611764705882353,
+  "promotion > salary_raise": 0.05764705882352941,
+  "probation_review > training > promotion": 0.05529411764705883,
+  "probation_review > resignation > exit_interview": 0.05372549019607843,
+  "hire > resignation": 0.052941176470588235,
+  "retirement > exit_interview": 0.05176470588235294,
+  "performance_review > retirement > exit_interview": 0.05176470588235294,
+  "training > performance_review > leave_of_absence": 0.050980392156862744,
+  "leave_of_absence > return_from_leave > performance_review": 0.05058823529411765,
+  "return_from_leave > performance_review": 0.05058823529411765,
+  "probation_review > performance_review > training": 0.05058823529411765
+ },
+ "event_support": {
+  "hire": 1.0,
+  "probation_review": 0.8235294117647058,
+  "internal_transfer": 0.15764705882352942,
+  "onboarding": 0.9470588235294117,
+  "performance_review": 0.8133333333333334,
+  "promotion": 0.4207843137254902,
+  "training": 0.683921568627451,
+  "resignation": 0.45529411764705885,
+  "exit_interview": 0.508235294117647,
+  "termination": 0.11529411764705882,
+  "improvement_plan": 0.2388235294117647,
+  "leave_of_absence": 0.1192156862745098,
+  "salary_raise": 0.5101960784313726,
+  "return_from_leave": 0.09490196078431372,
+  "retirement": 0.10941176470588235,
+  "warning": 0.07568627450980392
+ },
+ "rules": [
+  [
+   [
+    "onboarding > probation_review > resignation"
+   ],
+   [
+    "probation_review > resignation > exit_interview"
+   ],
+   0.0537,
+   0.873,
+   16.24
+  ],
+  [
+   [
+    "probation_review > resignation > exit_interview"
+   ],
+   [
+    "onboarding > probation_review > resignation"
+   ],
+   0.0537,
+   1.0,
+   16.24
+  ],
+  [
+   [
+    "internal_transfer > onboarding > probation_review"
+   ],
+   [
+    "training > internal_transfer > onboarding"
+   ],
+   0.0545,
+   0.79,
+   11.92
+  ],
+  [
+   [
+    "training > internal_transfer > onboarding"
+   ],
+   [
+    "internal_transfer > onboarding > probation_review"
+   ],
+   0.0545,
+   0.822,
+   11.92
+  ],
+  [
+   [
+    "performance_review > salary_raise > resignation"
+   ],
+   [
+    "salary_raise > resignation > exit_interview"
+   ],
+   0.0671,
+   0.814,
+   11.41
+  ],
+  [
+   [
+    "salary_raise > resignation > exit_interview"
+   ],
+   [
+    "performance_review > salary_raise > resignation"
+   ],
+   0.0671,
+   0.94,
+   11.41
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   [
+    "return_from_leave > performance_review"
+   ],
+   0.0506,
+   0.533,
+   10.54
+  ],
+  [
+   [
+    "return_from_leave > performance_review"
+   ],
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   0.0506,
+   1.0,
+   10.54
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave > performance_review"
+   ],
+   [
+    "performance_review > leave_of_absence > return_from_leave"
+   ],
+   0.0506,
+   1.0,
+   10.54
+  ],
+  [
+   [
+    "performance_review > leave_of_absence > return_from_leave"
+   ],
+   [
+    "leave_of_absence > return_from_leave > performance_review"
+   ],
+   0.0506,
+   0.533,
+   10.54
+  ],
+  [
+   [
+    "performance_review > leave_of_absence > return_from_leave"
+   ],
+   [
+    "return_from_leave > performance_review"
+   ],
+   0.0506,
+   0.533,
+   10.54
+  ],
+  [
+   [
+    "return_from_leave > performance_review"
+   ],
+   [
+    "performance_review > leave_of_absence > return_from_leave"
+   ],
+   0.0506,
+   1.0,
+   10.54
+  ],
+  [
+   [
+    "retirement > exit_interview"
+   ],
+   [
+    "performance_review > retirement"
+   ],
+   0.0518,
+   1.0,
+   9.14
+  ],
+  [
+   [
+    "performance_review > salary_raise > training"
+   ],
+   [
+    "salary_raise > training > performance_review"
+   ],
+   0.0761,
+   0.7,
+   8.67
+  ],
+  [
+   [
+    "salary_raise > training > performance_review"
+   ],
+   [
+    "performance_review > salary_raise > training"
+   ],
+   0.0761,
+   0.942,
+   8.67
+  ],
+  [
+   [
+    "leave_of_absence"
+   ],
+   [
+    "return_from_leave"
+   ],
+   0.0949,
+   0.796,
+   8.39
+  ],
+  [
+   [
+    "return_from_leave"
+   ],
+   [
+    "leave_of_absence"
+   ],
+   0.0949,
+   1.0,
+   8.39
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   [
+    "performance_review > leave_of_absence"
+   ],
+   0.0949,
+   1.0,
+   8.39
+  ],
+  [
+   [
+    "performance_review > leave_of_absence"
+   ],
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   0.0949,
+   0.796,
+   8.39
+  ],
+  [
+   [
+    "performance_review > leave_of_absence"
+   ],
+   [
+    "return_from_leave"
+   ],
+   0.0949,
+   0.796,
+   8.39
+  ],
+  [
+   [
+    "return_from_leave"
+   ],
+   [
+    "performance_review > leave_of_absence"
+   ],
+   0.0949,
+   1.0,
+   8.39
+  ],
+  [
+   [
+    "return_from_leave > performance_review"
+   ],
+   [
+    "leave_of_absence"
+   ],
+   0.0506,
+   1.0,
+   8.39
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave > performance_review"
+   ],
+   [
+    "performance_review > leave_of_absence"
+   ],
+   0.0506,
+   1.0,
+   8.39
+  ],
+  [
+   [
+    "return_from_leave > performance_review"
+   ],
+   [
+    "performance_review > leave_of_absence"
+   ],
+   0.0506,
+   1.0,
+   8.39
+  ],
+  [
+   [
+    "hire > onboarding > training"
+   ],
+   [
+    "onboarding > training > performance_review"
+   ],
+   0.1051,
+   0.77,
+   7.01
+  ],
+  [
+   [
+    "onboarding > training > performance_review"
+   ],
+   [
+    "hire > onboarding > training"
+   ],
+   0.1051,
+   0.957,
+   7.01
+  ],
+  [
+   [
+    "internal_transfer > onboarding > probation_review"
+   ],
+   [
+    "training > internal_transfer"
+   ],
+   0.0549,
+   0.795,
+   6.65
+  ],
+  [
+   [
+    "internal_transfer > onboarding"
+   ],
+   [
+    "training > internal_transfer"
+   ],
+   0.0671,
+   0.788,
+   6.59
+  ],
+  [
+   [
+    "training > internal_transfer"
+   ],
+   [
+    "internal_transfer > onboarding"
+   ],
+   0.0671,
+   0.561,
+   6.59
+  ],
+  [
+   [
+    "training > performance_review > resignation"
+   ],
+   [
+    "performance_review > resignation > exit_interview"
+   ],
+   0.0525,
+   0.859,
+   6.35
+  ],
+  [
+   [
+    "training > promotion > training"
+   ],
+   [
+    "promotion > training > performance_review"
+   ],
+   0.0561,
+   0.773,
+   4.72
+  ],
+  [
+   [
+    "promotion > performance_review > salary_raise"
+   ],
+   [
+    "performance_review > promotion > performance_review"
+   ],
+   0.0514,
+   0.682,
+   4.69
+  ],
+  [
+   [
+    "performance_review > promotion > training"
+   ],
+   [
+    "promotion > training > performance_review"
+   ],
+   0.1216,
+   0.758,
+   4.62
+  ],
+  [
+   [
+    "promotion > training > performance_review"
+   ],
+   [
+    "performance_review > promotion > training"
+   ],
+   0.1216,
+   0.742,
+   4.62
+  ],
+  [
+   [
+    "training > performance_review > improvement_plan"
+   ],
+   [
+    "improvement_plan > performance_review"
+   ],
+   0.0631,
+   0.594,
+   4.42
+  ],
+  [
+   [
+    "training > performance_review > improvement_plan"
+   ],
+   [
+    "performance_review > improvement_plan > performance_review"
+   ],
+   0.058,
+   0.546,
+   4.32
+  ],
+  [
+   [
+    "improvement_plan > performance_review"
+   ],
+   [
+    "performance_review > improvement_plan"
+   ],
+   0.1345,
+   1.0,
+   4.19
+  ],
+  [
+   [
+    "performance_review > improvement_plan"
+   ],
+   [
+    "improvement_plan > performance_review"
+   ],
+   0.1345,
+   0.563,
+   4.19
+  ],
+  [
+   [
+    "warning"
+   ],
+   [
+    "improvement_plan"
+   ],
+   0.0757,
+   1.0,
+   4.19
+  ],
+  [
+   [
+    "improvement_plan > warning"
+   ],
+   [
+    "performance_review > improvement_plan"
+   ],
+   0.0757,
+   1.0,
+   4.19
+  ],
+  [
+   [
+    "warning"
+   ],
+   [
+    "performance_review > improvement_plan"
+   ],
+   0.0757,
+   1.0,
+   4.19
+  ],
+  [
+   [
+    "training > performance_review > training"
+   ],
+   [
+    "performance_review > training > performance_review"
+   ],
+   0.0976,
+   0.785,
+   3.9
+  ],
+  [
+   [
+    "salary_raise > performance_review > training"
+   ],
+   [
+    "performance_review > training > performance_review"
+   ],
+   0.0588,
+   0.758,
+   3.76
+  ],
+  [
+   [
+    "training > performance_review > promotion"
+   ],
+   [
+    "performance_review > promotion > training"
+   ],
+   0.0929,
+   0.544,
+   3.39
+  ],
+  [
+   [
+    "performance_review > promotion > training"
+   ],
+   [
+    "training > performance_review > promotion"
+   ],
+   0.0929,
+   0.579,
+   3.39
+  ],
+  [
+   [
+    "probation_review > performance_review > salary_raise"
+   ],
+   [
+    "onboarding > probation_review > performance_review"
+   ],
+   0.1243,
+   1.0,
+   3.03
+  ],
+  [
+   [
+    "probation_review > performance_review > promotion"
+   ],
+   [
+    "onboarding > probation_review > performance_review"
+   ],
+   0.0612,
+   1.0,
+   3.03
+  ],
+  [
+   [
+    "probation_review > performance_review > training"
+   ],
+   [
+    "onboarding > probation_review > performance_review"
+   ],
+   0.0506,
+   1.0,
+   3.03
+  ],
+  [
+   [
+    "performance_review > promotion > performance_review"
+   ],
+   [
+    "training > performance_review > promotion"
+   ],
+   0.0749,
+   0.515,
+   3.01
+  ],
+  [
+   [
+    "promotion > training > performance_review"
+   ],
+   [
+    "training > performance_review > promotion"
+   ],
+   0.082,
+   0.5,
+   2.92
+  ],
+  [
+   [
+    "training > performance_review > promotion"
+   ],
+   [
+    "promotion > training"
+   ],
+   0.1035,
+   0.606,
+   2.81
+  ],
+  [
+   [
+    "training > promotion"
+   ],
+   [
+    "promotion > training"
+   ],
+   0.1016,
+   0.597,
+   2.77
+  ],
+  [
+   [
+    "salary_raise > performance_review > salary_raise"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.1412,
+   0.97,
+   2.74
+  ],
+  [
+   [
+    "salary_raise > performance_review > training"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0737,
+   0.949,
+   2.68
+  ],
+  [
+   [
+    "salary_raise > performance_review > promotion"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0804,
+   0.945,
+   2.67
+  ],
+  [
+   [
+    "salary_raise > performance_review > improvement_plan"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0655,
+   0.938,
+   2.65
+  ],
+  [
+   [
+    "training > promotion"
+   ],
+   [
+    "promotion > performance_review"
+   ],
+   0.0914,
+   0.537,
+   2.59
+  ],
+  [
+   [
+    "onboarding > probation_review > training"
+   ],
+   [
+    "probation_review > training > performance_review"
+   ],
+   0.302,
+   0.78,
+   2.58
+  ],
+  [
+   [
+    "probation_review > training > performance_review"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.302,
+   1.0,
+   2.58
+  ],
+  [
+   [
+    "probation_review > training > promotion"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0553,
+   1.0,
+   2.58
+  ],
+  [
+   [
+    "salary_raise > training > performance_review"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.0604,
+   0.748,
+   2.55
+  ],
+  [
+   [
+    "performance_review > salary_raise > training"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.0796,
+   0.733,
+   2.5
+  ],
+  [
+   [
+    "performance_review > promotion"
+   ],
+   [
+    "promotion > training"
+   ],
+   0.1765,
+   0.533,
+   2.47
+  ],
+  [
+   [
+    "promotion > training"
+   ],
+   [
+    "performance_review > promotion"
+   ],
+   0.1765,
+   0.82,
+   2.47
+  ],
+  [
+   [
+    "promotion > training > performance_review"
+   ],
+   [
+    "performance_review > promotion"
+   ],
+   0.1341,
+   0.818,
+   2.47
+  ],
+  [
+   [
+    "salary_raise > training"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.0824,
+   0.719,
+   2.45
+  ],
+  [
+   [
+    "performance_review > promotion"
+   ],
+   [
+    "promotion > performance_review"
+   ],
+   0.1671,
+   0.504,
+   2.43
+  ],
+  [
+   [
+    "promotion > performance_review"
+   ],
+   [
+    "performance_review > promotion"
+   ],
+   0.1671,
+   0.805,
+   2.43
+  ],
+  [
+   [
+    "promotion > performance_review > salary_raise"
+   ],
+   [
+    "performance_review > promotion"
+   ],
+   0.0592,
+   0.786,
+   2.37
+  ],
+  [
+   [
+    "salary_raise > performance_review > training"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.0514,
+   0.662,
+   2.26
+  ],
+  [
+   [
+    "onboarding > probation_review > resignation"
+   ],
+   [
+    "resignation > exit_interview"
+   ],
+   0.0537,
+   0.873,
+   2.24
+  ],
+  [
+   [
+    "probation_review > resignation"
+   ],
+   [
+    "resignation > exit_interview"
+   ],
+   0.0537,
+   0.873,
+   2.24
+  ],
+  [
+   [
+    "probation_review > performance_review > salary_raise"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.098,
+   0.789,
+   2.23
+  ],
+  [
+   [
+    "training > performance_review > resignation"
+   ],
+   [
+    "resignation > exit_interview"
+   ],
+   0.0525,
+   0.859,
+   2.2
+  ],
+  [
+   [
+    "performance_review > resignation"
+   ],
+   [
+    "resignation > exit_interview"
+   ],
+   0.1353,
+   0.848,
+   2.17
+  ],
+  [
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.2204,
+   0.622,
+   2.12
+  ],
+  [
+   [
+    "training > performance_review > salary_raise"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.2204,
+   0.751,
+   2.12
+  ],
+  [
+   [
+    "probation_review > performance_review > salary_raise"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0988,
+   0.795,
+   2.12
+  ],
+  [
+   [
+    "promotion > performance_review > salary_raise"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0561,
+   0.745,
+   2.1
+  ],
+  [
+   [
+    "performance_review > salary_raise > resignation"
+   ],
+   [
+    "resignation > exit_interview"
+   ],
+   0.0671,
+   0.814,
+   2.09
+  ],
+  [
+   [
+    "salary_raise > resignation"
+   ],
+   [
+    "resignation > exit_interview"
+   ],
+   0.0714,
+   0.812,
+   2.08
+  ],
+  [
+   [
+    "salary_raise > performance_review > salary_raise"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.0886,
+   0.609,
+   2.08
+  ],
+  [
+   [
+    "salary_raise > performance_review"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.2227,
+   0.594,
+   2.03
+  ],
+  [
+   [
+    "training > performance_review > salary_raise"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.2227,
+   0.759,
+   2.03
+  ],
+  [
+   [
+    "salary_raise > training > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0792,
+   0.981,
+   2.01
+  ],
+  [
+   [
+    "salary_raise > training"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.1122,
+   0.979,
+   2.0
+  ],
+  [
+   [
+    "promotion > performance_review > salary_raise"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0565,
+   0.75,
+   2.0
+  ],
+  [
+   [
+    "performance_review > salary_raise"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.362,
+   0.74,
+   1.97
+  ],
+  [
+   [
+    "salary_raise > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.362,
+   0.965,
+   1.97
+  ],
+  [
+   [
+    "salary_raise > performance_review > training"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0749,
+   0.965,
+   1.97
+  ],
+  [
+   [
+    "salary_raise > resignation > exit_interview"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0686,
+   0.962,
+   1.97
+  ],
+  [
+   [
+    "salary_raise > resignation"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0843,
+   0.96,
+   1.96
+  ],
+  [
+   [
+    "salary_raise > performance_review > promotion"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0816,
+   0.959,
+   1.96
+  ],
+  [
+   [
+    "salary_raise > performance_review > improvement_plan"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0663,
+   0.949,
+   1.94
+  ],
+  [
+   [
+    "performance_review > training > performance_review"
+   ],
+   [
+    "training > performance_review > salary_raise"
+   ],
+   0.1118,
+   0.554,
+   1.89
+  ],
+  [
+   [
+    "internal_transfer > onboarding > probation_review"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0502,
+   0.727,
+   1.88
+  ],
+  [
+   [
+    "internal_transfer > onboarding > probation_review"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.0502,
+   0.727,
+   1.88
+  ],
+  [
+   [
+    "internal_transfer > onboarding"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.058,
+   0.682,
+   1.76
+  ],
+  [
+   [
+    "internal_transfer > onboarding"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.058,
+   0.682,
+   1.76
+  ],
+  [
+   [
+    "onboarding > probation_review > resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.0537,
+   0.873,
+   1.72
+  ],
+  [
+   [
+    "probation_review > resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.0537,
+   0.873,
+   1.72
+  ],
+  [
+   [
+    "training > performance_review > promotion"
+   ],
+   [
+    "probation_review > training > performance_review"
+   ],
+   0.0882,
+   0.516,
+   1.71
+  ],
+  [
+   [
+    "training > performance_review > resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.0525,
+   0.859,
+   1.69
+  ],
+  [
+   [
+    "training > performance_review > improvement_plan"
+   ],
+   [
+    "probation_review > training > performance_review"
+   ],
+   0.0541,
+   0.509,
+   1.69
+  ],
+  [
+   [
+    "exit_interview"
+   ],
+   [
+    "resignation"
+   ],
+   0.3898,
+   0.767,
+   1.68
+  ],
+  [
+   [
+    "resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.3898,
+   0.856,
+   1.68
+  ],
+  [
+   [
+    "performance_review > resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.1353,
+   0.848,
+   1.67
+  ],
+  [
+   [
+    "training > internal_transfer"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0769,
+   0.643,
+   1.66
+  ],
+  [
+   [
+    "training > internal_transfer"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.0769,
+   0.643,
+   1.66
+  ],
+  [
+   [
+    "performance_review > training > performance_review"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.122,
+   0.605,
+   1.61
+  ],
+  [
+   [
+    "performance_review > training > performance_review"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.1149,
+   0.57,
+   1.61
+  ],
+  [
+   [
+    "performance_review > salary_raise > resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.0671,
+   0.814,
+   1.6
+  ],
+  [
+   [
+    "salary_raise > resignation"
+   ],
+   [
+    "exit_interview"
+   ],
+   0.0714,
+   0.812,
+   1.6
+  ],
+  [
+   [
+    "training > performance_review > improvement_plan"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0655,
+   0.616,
+   1.59
+  ],
+  [
+   [
+    "training > performance_review > improvement_plan"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.0655,
+   0.616,
+   1.59
+  ],
+  [
+   [
+    "internal_transfer"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0957,
+   0.607,
+   1.57
+  ],
+  [
+   [
+    "internal_transfer"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.0957,
+   0.607,
+   1.57
+  ],
+  [
+   [
+    "performance_review > training"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.1576,
+   0.584,
+   1.56
+  ],
+  [
+   [
+    "performance_review > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.258,
+   0.956,
+   1.54
+  ],
+  [
+   [
+    "performance_review > improvement_plan > performance_review"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0729,
+   0.578,
+   1.54
+  ],
+  [
+   [
+    "training > performance_review > promotion"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.102,
+   0.596,
+   1.54
+  ],
+  [
+   [
+    "training > performance_review > promotion"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.102,
+   0.596,
+   1.54
+  ],
+  [
+   [
+    "salary_raise > performance_review > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.0741,
+   0.955,
+   1.54
+  ],
+  [
+   [
+    "performance_review > training"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.1463,
+   0.542,
+   1.53
+  ],
+  [
+   [
+    "salary_raise > training"
+   ],
+   [
+    "promotion"
+   ],
+   0.0733,
+   0.64,
+   1.52
+  ],
+  [
+   [
+    "performance_review > promotion > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.151,
+   0.941,
+   1.52
+  ],
+  [
+   [
+    "performance_review > improvement_plan > performance_review"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0678,
+   0.537,
+   1.52
+  ],
+  [
+   [
+    "performance_review > salary_raise > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.1016,
+   0.935,
+   1.51
+  ],
+  [
+   [
+    "salary_raise > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.1071,
+   0.935,
+   1.51
+  ],
+  [
+   [
+    "training > performance_review > training"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0725,
+   0.584,
+   1.51
+  ],
+  [
+   [
+    "training > performance_review > training"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.0725,
+   0.584,
+   1.51
+  ],
+  [
+   [
+    "promotion > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.2008,
+   0.933,
+   1.51
+  ],
+  [
+   [
+    "onboarding > probation_review > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.3569,
+   0.922,
+   1.49
+  ],
+  [
+   [
+    "probation_review > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.3569,
+   0.922,
+   1.49
+  ],
+  [
+   [
+    "training > performance_review"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.3569,
+   0.576,
+   1.49
+  ],
+  [
+   [
+    "training > performance_review"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.3569,
+   0.576,
+   1.49
+  ],
+  [
+   [
+    "improvement_plan > performance_review"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0749,
+   0.557,
+   1.49
+  ],
+  [
+   [
+    "performance_review > training"
+   ],
+   [
+    "promotion"
+   ],
+   0.1686,
+   0.625,
+   1.49
+  ],
+  [
+   [
+    "training > performance_review > training"
+   ],
+   [
+    "promotion"
+   ],
+   0.0776,
+   0.625,
+   1.48
+  ],
+  [
+   [
+    "hire > onboarding > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.1251,
+   0.917,
+   1.48
+  ],
+  [
+   [
+    "performance_review > salary_raise > training"
+   ],
+   [
+    "promotion"
+   ],
+   0.0675,
+   0.621,
+   1.48
+  ],
+  [
+   [
+    "training > performance_review > salary_raise"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.1675,
+   0.571,
+   1.47
+  ],
+  [
+   [
+    "training > performance_review > salary_raise"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.1675,
+   0.571,
+   1.47
+  ],
+  [
+   [
+    "performance_review > salary_raise > training"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.06,
+   0.552,
+   1.47
+  ],
+  [
+   [
+    "onboarding > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.1329,
+   0.911,
+   1.47
+  ],
+  [
+   [
+    "improvement_plan > performance_review"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0698,
+   0.519,
+   1.47
+  ],
+  [
+   [
+    "training > promotion"
+   ],
+   [
+    "onboarding > probation_review > training"
+   ],
+   0.0965,
+   0.567,
+   1.46
+  ],
+  [
+   [
+    "training > promotion"
+   ],
+   [
+    "probation_review > training"
+   ],
+   0.0965,
+   0.567,
+   1.46
+  ],
+  [
+   [
+    "performance_review > salary_raise > training"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0561,
+   0.516,
+   1.46
+  ],
+  [
+   [
+    "salary_raise > training"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0624,
+   0.545,
+   1.45
+  ],
+  [
+   [
+    "performance_review > training > performance_review"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.1486,
+   0.737,
+   1.45
+  ],
+  [
+   [
+    "salary_raise > training"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0584,
+   0.51,
+   1.44
+  ],
+  [
+   [
+    "performance_review > training > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.142,
+   0.704,
+   1.44
+  ],
+  [
+   [
+    "training > promotion > training"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.0647,
+   0.892,
+   1.44
+  ],
+  [
+   [
+    "leave_of_absence"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0604,
+   0.507,
+   1.43
+  ],
+  [
+   [
+    "performance_review > leave_of_absence"
+   ],
+   [
+    "performance_review > salary_raise > performance_review"
+   ],
+   0.0604,
+   0.507,
+   1.43
+  ],
+  [
+   [
+    "internal_transfer > onboarding"
+   ],
+   [
+    "training"
+   ],
+   0.0831,
+   0.977,
+   1.43
+  ],
+  [
+   [
+    "internal_transfer"
+   ],
+   [
+    "training"
+   ],
+   0.1537,
+   0.975,
+   1.43
+  ],
+  [
+   [
+    "performance_review > training"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.1957,
+   0.725,
+   1.42
+  ],
+  [
+   [
+    "internal_transfer > onboarding > probation_review"
+   ],
+   [
+    "training"
+   ],
+   0.0671,
+   0.972,
+   1.42
+  ],
+  [
+   [
+    "internal_transfer"
+   ],
+   [
+    "promotion"
+   ],
+   0.0933,
+   0.592,
+   1.41
+  ],
+  [
+   [
+    "performance_review > improvement_plan > performance_review"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.0906,
+   0.717,
+   1.41
+  ],
+  [
+   [
+    "performance_review > training"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.1847,
+   0.685,
+   1.4
+  ],
+  [
+   [
+    "promotion > salary_raise"
+   ],
+   [
+    "training"
+   ],
+   0.0549,
+   0.952,
+   1.39
+  ],
+  [
+   [
+    "performance_review > improvement_plan > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0859,
+   0.68,
+   1.39
+  ],
+  [
+   [
+    "training > internal_transfer"
+   ],
+   [
+    "promotion"
+   ],
+   0.0698,
+   0.584,
+   1.39
+  ],
+  [
+   [
+    "improvement_plan > performance_review"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.0949,
+   0.706,
+   1.38
+  ],
+  [
+   [
+    "performance_review > promotion"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.1714,
+   0.517,
+   1.38
+  ],
+  [
+   [
+    "performance_review > promotion"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.2831,
+   0.854,
+   1.38
+  ],
+  [
+   [
+    "training"
+   ],
+   [
+    "promotion"
+   ],
+   0.3953,
+   0.578,
+   1.37
+  ],
+  [
+   [
+    "promotion"
+   ],
+   [
+    "training"
+   ],
+   0.3953,
+   0.939,
+   1.37
+  ],
+  [
+   [
+    "improvement_plan > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0902,
+   0.671,
+   1.37
+  ],
+  [
+   [
+    "internal_transfer"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.1102,
+   0.699,
+   1.37
+  ],
+  [
+   [
+    "promotion > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.1388,
+   0.669,
+   1.37
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.0804,
+   0.847,
+   1.37
+  ],
+  [
+   [
+    "performance_review > leave_of_absence > return_from_leave"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.0804,
+   0.847,
+   1.37
+  ],
+  [
+   [
+    "return_from_leave"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.0804,
+   0.847,
+   1.37
+  ],
+  [
+   [
+    "performance_review > promotion > performance_review"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0969,
+   0.666,
+   1.36
+  ],
+  [
+   [
+    "leave_of_absence"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0608,
+   0.51,
+   1.36
+  ],
+  [
+   [
+    "performance_review > leave_of_absence"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.0608,
+   0.51,
+   1.36
+  ],
+  [
+   [
+    "leave_of_absence"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.1004,
+   0.842,
+   1.36
+  ],
+  [
+   [
+    "performance_review > leave_of_absence"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.1004,
+   0.842,
+   1.36
+  ],
+  [
+   [
+    "salary_raise > performance_review > promotion"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.0714,
+   0.839,
+   1.35
+  ],
+  [
+   [
+    "performance_review > promotion"
+   ],
+   [
+    "training"
+   ],
+   0.3059,
+   0.923,
+   1.35
+  ],
+  [
+   [
+    "promotion > performance_review"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.1427,
+   0.688,
+   1.35
+  ],
+  [
+   [
+    "performance_review > promotion > performance_review"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.1,
+   0.687,
+   1.35
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0624,
+   0.657,
+   1.34
+  ],
+  [
+   [
+    "performance_review > leave_of_absence > return_from_leave"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0624,
+   0.657,
+   1.34
+  ],
+  [
+   [
+    "return_from_leave"
+   ],
+   [
+    "performance_review > salary_raise"
+   ],
+   0.0624,
+   0.657,
+   1.34
+  ],
+  [
+   [
+    "promotion > performance_review"
+   ],
+   [
+    "training"
+   ],
+   0.1906,
+   0.919,
+   1.34
+  ],
+  [
+   [
+    "performance_review > promotion"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.2271,
+   0.685,
+   1.34
+  ],
+  [
+   [
+    "salary_raise > performance_review > promotion"
+   ],
+   [
+    "training"
+   ],
+   0.078,
+   0.917,
+   1.34
+  ],
+  [
+   [
+    "promotion"
+   ],
+   [
+    "salary_raise > performance_review"
+   ],
+   0.2106,
+   0.5,
+   1.33
+  ],
+  [
+   [
+    "salary_raise > performance_review"
+   ],
+   [
+    "promotion"
+   ],
+   0.2106,
+   0.562,
+   1.33
+  ],
+  [
+   [
+    "promotion"
+   ],
+   [
+    "salary_raise"
+   ],
+   0.2859,
+   0.679,
+   1.33
+  ],
+  [
+   [
+    "salary_raise"
+   ],
+   [
+    "promotion"
+   ],
+   0.2859,
+   0.56,
+   1.33
+  ],
+  [
+   [
+    "performance_review > training > performance_review"
+   ],
+   [
+    "promotion"
+   ],
+   0.1129,
+   0.56,
+   1.33
+  ],
+  [
+   [
+    "promotion"
+   ],
+   [
+    "training > performance_review"
+   ],
+   0.3467,
+   0.824,
+   1.33
+  ],
+  [
+   [
+    "training > performance_review"
+   ],
+   [
+    "promotion"
+   ],
+   0.3467,
+   0.559,
+   1.33
+  ],
+  [
+   [
+    "leave_of_absence > return_from_leave"
+   ],
+   [
+    "training"
+   ],
+   0.0863,
+   0.909,
+   1.33
+  ]
+ ]
+}
