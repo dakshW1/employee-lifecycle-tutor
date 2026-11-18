@@ -104,7 +104,22 @@ def test_tutor_session_with_feedback(lm, patterns, tmp_path):
 
 
 # Milestone 5: Evaluate the tutor's ability to accurately guide users through HR processes.
-@pytest.mark.skip(reason="remove this line when you start milestone 5")
-def test_milestone_5():
-    raise NotImplementedError("write the test for milestone 5")
+def test_cases_hide_a_real_next_event():
+    for case in core.make_cases(core.simulate(50, seed=4), n=30):
+        assert case["target"] in core.TRANSITIONS[case["visible"][-1]]
 
+
+def test_baselines_are_ordered_as_expected(patterns):
+    train, test = core.split(core.simulate(800, seed=5))
+    cases = core.make_cases(test, n=100)
+    pop = core.evaluate(cases, core.popularity_scorer(train))
+    mined = core.evaluate(cases, core.pattern_scorer(patterns))
+    oracle = core.evaluate(cases, core.oracle_scorer)
+    assert pop["mrr"] < mined["mrr"] <= oracle["mrr"] + 0.02  # context helps; nothing beats the truth
+    assert set(oracle) >= {"mrr", "hits@1", "hits@3"}
+
+
+def test_lm_scorer_runs_in_evaluate(lm):
+    model, tok, _ = lm
+    res = core.evaluate(core.make_cases(core.simulate(20, seed=6), n=5), core.lm_scorer(model, tok))
+    assert 0 < res["mrr"] <= 1

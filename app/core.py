@@ -328,6 +328,51 @@ def save_feedback(history: list[str], suggestion: str, rating: int, path: Path =
 
 
 # --- Milestone 5: Evaluate the tutor's ability to accurately guide users through HR processes.
-# Hint: Implement evaluation metrics for accuracy and guidance.
-def milestone_5():  # TODO(milestone 5)
-    raise NotImplementedError("TODO(milestone 5)")
+
+def make_cases(careers: list[list[str]], n: int = 300, seed: int = 0) -> list[dict]:
+    """Cut each test career at a random point: show the prefix, hide the next event."""
+    rng = random.Random(seed)
+    cases = []
+    for c in rng.sample(careers, min(n, len(careers))):
+        if len(c) < 2:
+            continue
+        cut = rng.randint(1, len(c) - 1)
+        cases.append({"visible": c[:cut], "target": c[cut]})
+    return cases
+
+
+def _rank(scores: dict[str, float], target: str) -> int:
+    from thilimarketbasket.evaluate import rank_of
+
+    names = list(EVENTS) + [END]
+    arr = np.array([scores.get(n, -1e9) for n in names])
+    return rank_of(arr, names.index(target))
+
+
+def evaluate(cases: list[dict], scorer, ks=(1, 3)) -> dict:
+    """MRR and hits@K (thilimarketbasket.evaluate.summarise) for any scorer(history) -> {event: score}."""
+    from thilimarketbasket.evaluate import summarise
+
+    ranks = [_rank(scorer(c["visible"]), c["target"]) for c in cases]
+    return {k: round(v, 3) for k, v in summarise(ranks, ks=ks).items()}
+
+
+def popularity_scorer(train: list[list[str]]):
+    counts = Counter(e for c in train for e in c[1:])
+    return lambda history: {e: counts.get(e, 0) for e in EVENTS}
+
+
+def pattern_scorer(patterns: dict):
+    """Baseline that only uses the mined 2-step patterns (no LM)."""
+    def score(history):
+        return {nxt: sup for nxt, sup, _ in next_step_stats(patterns, history[-1])}
+    return score
+
+
+def oracle_scorer(history):
+    """The true transition probabilities: the best any model can do (the ceiling)."""
+    return dict(TRANSITIONS[history[-1]])
+
+
+def lm_scorer(model, tok):
+    return lambda history: score_next(model, tok, history)
