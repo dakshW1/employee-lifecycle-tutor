@@ -1,13 +1,31 @@
-"""Your tests. Each milestone in README.md gets one here: write the test first, then make it pass.
-
-They start skipped. Remove the `skip` line as you work on each milestone.
-"""
+"""Tests: one block per milestone in README.md. LM tests use `sshleifer/tiny-gpt2` (~2 MB) to stay fast."""
 import pytest
 
+from app import core
+
+TINY = "sshleifer/tiny-gpt2"
+
+
 # Milestone 1: Represent HR events (hiring, training, promotion) as ordered sequences.
-@pytest.mark.skip(reason="remove this line when you start milestone 1")
-def test_milestone_1():
-    raise NotImplementedError("write the test for milestone 1")
+def test_transition_model_is_a_valid_answer_key():
+    for event, nxt in core.TRANSITIONS.items():
+        assert event in core.EVENTS and abs(sum(nxt.values()) - 1) < 1e-9
+        assert all(n in core.EVENTS or n == core.END for n in nxt)
+
+
+def test_careers_follow_the_rules_and_keep_their_order():
+    careers = core.simulate(200, seed=1)
+    assert careers == core.simulate(200, seed=1)
+    for c in careers:
+        assert c[0] == "hire"
+        assert all(b in core.TRANSITIONS[a] for a, b in zip(c, c[1:]))  # only allowed steps
+    assert core.to_text(["hire", "probation_review"]) == "Career: hire > probation review"
+
+
+def test_careers_file_round_trip(tmp_path):
+    careers = core.simulate(5)
+    core.save_careers(careers, tmp_path / "c.jsonl")
+    assert core.load_careers(tmp_path / "c.jsonl") == careers
 
 
 # Milestone 2: Mine frequent HR event sequences using `thilimarketbasket`.
