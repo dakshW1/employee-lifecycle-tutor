@@ -286,9 +286,45 @@ def save_lm(model, tok, out_dir: Path = MODEL_DIR, history: list | None = None) 
 
 
 # --- Milestone 4: Design a text-based interactive tutor that queries the LM for explanations or next steps.
-# Hint: Design a text-based interface for user interaction.
-def milestone_4():  # TODO(milestone 4)
-    raise NotImplementedError("TODO(milestone 4)")
+
+def parse_history(text: str) -> list[str]:
+    """'hire, onboarding > training' -> ['hire', 'onboarding', 'training']. Accepts spaces or underscores."""
+    import re
+
+    parts = [p.strip().lower().replace(" ", "_") for p in re.split(r"[>,\n]+", text) if p.strip()]
+    unknown = [p for p in parts if p not in EVENTS]
+    if unknown:
+        raise ValueError(f"unknown event(s): {', '.join(unknown)}. Known: {', '.join(EVENTS)}")
+    return parts
+
+
+def explain(model, tok, patterns: dict, history: list[str], top: int = 3) -> dict:
+    """The tutor's answer: the LM's likely next steps, each with what the event means and the mined evidence."""
+    probs = score_next(model, tok, history)
+    evidence = {nxt: (sup, share) for nxt, sup, share in next_step_stats(patterns, history[-1])}
+    steps = []
+    for event, p in list(probs.items())[:top]:
+        sup, share = evidence.get(event, (0.0, 0.0))
+        if event == END:
+            why = "Many careers simply end in the records at this point."
+        elif share:
+            why = (f"In the mined HR records, {share:.0%} of careers that reach '{history[-1]}' "
+                   f"continue with '{event}' (seen in {sup:.0%} of all careers).")
+        else:
+            why = f"Not a frequent pattern after '{history[-1]}' in the records; the model is less sure."
+        steps.append({"event": event, "probability": round(p, 3), "what": EVENTS.get(event, "End of record."),
+                      "why": why})
+    return {"history": history, "next_steps": steps}
+
+
+def save_feedback(history: list[str], suggestion: str, rating: int, path: Path = FEEDBACK_FILE) -> dict:
+    if not 1 <= rating <= 5:
+        raise ValueError("rating must be 1-5")
+    rec = {"history": history, "suggestion": suggestion, "rating": rating,
+           "time": time.strftime("%Y-%m-%d %H:%M:%S")}
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(rec) + "\n")
+    return rec
 
 
 # --- Milestone 5: Evaluate the tutor's ability to accurately guide users through HR processes.

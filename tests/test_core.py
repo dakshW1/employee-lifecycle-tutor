@@ -76,9 +76,31 @@ def test_score_next_is_a_distribution_over_events(lm):
 
 
 # Milestone 4: Design a text-based interactive tutor that queries the LM for explanations or next steps.
-@pytest.mark.skip(reason="remove this line when you start milestone 4")
-def test_milestone_4():
-    raise NotImplementedError("write the test for milestone 4")
+def test_parse_history():
+    assert core.parse_history("hire > onboarding, probation review") == ["hire", "onboarding", "probation_review"]
+    with pytest.raises(ValueError):
+        core.parse_history("hire > coffee break")
+
+
+def test_explain_gives_steps_with_reasons(lm, patterns):
+    model, tok, _ = lm
+    ans = core.explain(model, tok, patterns, ["hire"], top=3)
+    assert len(ans["next_steps"]) == 3
+    assert all(s["what"] and s["why"] for s in ans["next_steps"])
+
+
+from app.cli import tutor  # noqa: E402
+
+
+def test_tutor_session_with_feedback(lm, patterns, tmp_path):
+    model, tok, _ = lm
+    lines = iter(["events", "explain promotion", "hire > onboarding", "rate 4", "hire > nap", ""])
+    printed = []
+    answers = tutor(model, tok, patterns, inp=lambda _: next(lines), out=printed.append,
+                    feedback_file=tmp_path / "f.jsonl")
+    assert len(answers) == 1 and answers[0]["history"] == ["hire", "onboarding"]
+    assert any("unknown event" in p for p in printed)
+    assert '"rating": 4' in (tmp_path / "f.jsonl").read_text()
 
 
 # Milestone 5: Evaluate the tutor's ability to accurately guide users through HR processes.
